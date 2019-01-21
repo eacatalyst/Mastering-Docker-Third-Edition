@@ -5,9 +5,11 @@ RUN apk add --update nginx && \
         rm -rf /var/cache/apk/* && \
         mkdir -p /tmp/nginx/
 
-COPY files/nginx.conf /etc/nginx/nginx.conf
-COPY files/default.conf /etc/nginx/conf.d/default.conf
+
+RUN wget -q -O /etc/nginx/nginx.conf  https://github.com/eacatalyst/Mastering-Docker-Third-Edition/tree/master/chapter02/dockerfile-example/files/nginx.conf
+RUN wget -q -O /etc/nginx/conf.d/default.conf  https://github.com/eacatalyst/Mastering-Docker-Third-Edition/tree/master/chapter02/dockerfile-example/files/default.conf
 ADD files/html.tar.gz /usr/share/nginx/
+
 
 EXPOSE 80/tcp
 
